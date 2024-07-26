@@ -18,6 +18,10 @@ if not os.path.exists(posts_dir):
 # 레포지토리 로드
 repo = git.Repo(repo_path)
 
+# 사용자 정보 설정
+repo.config_writer().set_value("user", "name", "github-actions[bot]").release()
+repo.config_writer().set_value("user", "email", "github-actions[bot]@users.noreply.github.com").release()
+
 # RSS 피드 파싱
 feed = feedparser.parse(rss_url)
 
