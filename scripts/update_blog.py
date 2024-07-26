@@ -3,7 +3,6 @@ import git
 import os
 
 # 벨로그 RSS 피드 URL
-# example : rss_url = 'https://api.velog.io/rss/@soozi'
 rss_url = 'https://api.velog.io/rss/@jhh0830'
 
 # 깃허브 레포지토리 경로
@@ -42,4 +41,5 @@ for entry in feed.entries:
         repo.git.commit('-m', f'Add post: {entry.title}')
 
 # 변경 사항을 깃허브에 푸시
-repo.git.push()
+origin = repo.remote(name='origin')
+origin.push()
