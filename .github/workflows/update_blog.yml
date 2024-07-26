@@ -2,8 +2,8 @@ name: Update Blog Posts
 
 on:
   push:
-      branches:
-        - main  # 또는 워크플로우를 트리거하고 싶은 브랜치 이름
+    branches:
+      - main  # 또는 워크플로우를 트리거하고 싶은 브랜치 이름
   schedule:
     - cron: '0 0 * * *'  # 매일 자정에 실행
 
@@ -15,12 +15,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Push changes
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git push https://hh830${{ secrets.GH_PAT_DEVLOG }}@github.com/hh830/DevLog.git
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -31,4 +25,6 @@ jobs:
         pip install feedparser gitpython
 
     - name: Run script
+      env:
+        GH_PAT: ${{ secrets.GH_PAT_DEVLOG }}
       run: python scripts/update_blog.py
