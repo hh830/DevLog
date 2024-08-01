@@ -28,3 +28,4 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT_DEVLOG }}
       run: python scripts/update_blog.py
+
